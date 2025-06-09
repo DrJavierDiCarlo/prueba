@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crónicas de un Viajero | Inspiración Diaria</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* --- Estilo General --- */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        font-family: "Lato", sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* --- Clase Contenedora para Centrar Layout --- */
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* --- Estilos para la Cabecera (AHORA FIJA) --- */
+      header {
+        background-color: #2c3e50;
+        color: white;
+        padding: 15px 30px;
+        text-align: center;
+        border-bottom: 2px solid #4a5a6a; /* Borde inferior más sutil */
+
+        /* --- LA MAGIA PARA EL MENÚ FIJO --- */
+        position: sticky; /* Hace que se quede "pegado" */
+        top: 0; /* Se pega en la parte superior de la ventana */
+        z-index: 1000; /* Se asegura de que esté por encima de otro contenido */
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.2em;
+      }
+
+      /* --- Estilos para el Menú de Navegación (MEJORADO) --- */
+      nav {
+        margin-top: 10px;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      nav ul li {
+        display: inline-block;
+        margin: 0 12px; /* Un poco más de espacio */
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 12px 18px; /* Enlaces un poco más grandes */
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      /* --- Estilos para el Contenido Principal --- */
+      main {
+      }
+
+      section {
+        padding: 40px 30px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      section:last-of-type {
+        margin-bottom: 0;
+        border-bottom: none;
+      }
+
+      #contacto,
+      #inspiracion {
+        background-color: #f4f4f4;
+      }
+
+      h2 {
+        color: #2c3e50;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 25px;
+        font-size: 2em;
+        transition: color 0.5s ease;
+      }
+
+      p {
+        font-size: 18px;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+        margin: 20px auto;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      button {
+        display: block;
+        margin: 20px auto 0 auto;
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #e74c3c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s ease, background-color 0.3s ease;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        background-color: #c0392b;
+      }
+
+      /* --- Estilos para la Galería de Imágenes --- */
+      .galeria-contenedor {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .galeria-item {
+        flex-basis: 30%;
+        min-width: 250px;
+      }
+
+      .galeria-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .galeria-item img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      /* --- ESTILOS PARA EL GENERADOR DE CITAS INTEGRADO --- */
+      #quote-container {
+        text-align: center;
+        width: 90%;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      #quote-text {
+        font-family: "Merriweather", serif;
+        font-size: 1.6em;
+        font-style: italic;
+        color: #2c3e50;
+        margin: 0 0 20px 0;
+        min-height: 100px; /* Evita saltos de layout */
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      #quote-author {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 30px 0;
+        text-align: right;
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      #quote-author::before {
+        content: "— ";
+      }
+
+      .fade-out {
+        opacity: 0;
+      }
+
+      /* Media Query para responsividad */
+      @media (max-width: 768px) {
+        .galeria-item {
+          flex-basis: 100%;
+        }
+        nav ul li {
+          display: block;
+          margin: 10px 0;
+        }
+        #quote-text {
+          font-size: 1.3em;
+        }
+      }
+
+      /* --- Estilos para el Pie de Página --- */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #343a40;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Crónicas de un Viajero</h1>
+        <nav>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#destinos">Destinos</a></li>
+            <li><a href="#guias">Guías de Viaje</a></li>
+            <li><a href="#galeria">Mi Galería</a></li>
+            <li><a href="#inspiracion">Inspiración</a></li>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section id="inicio">
+          <h2>Bienvenido a la Aventura</h2>
+          <img
+            src="https://images.pexels.com/photos/2249962/pexels-photo-2249962.jpeg"
+            alt="Mapa del mundo extendido sobre una mesa de madera."
+          />
+          <p>
+            ¡Bienvenido a bordo de Crónicas de un Viajero! Este espacio es mucho
+            más que un simple blog; es una bitácora de aventuras diseñada para
+            despertar tu espíritu explorador. Aquí encontrarás la dosis de
+            inspiración y los datos prácticos que necesitas para lanzarte a
+            descubrir el mundo. Prepárate para empacar tus maletas, porque tu
+            próximo destino te está esperando.
+          </p>
+          <ul>
+            <li>
+              <strong>Guías de Destinos Detalladas:</strong> Explora itinerarios
+              completos y recomendaciones locales.
+            </li>
+            <li>
+              <strong>Consejos y Trucos de Viajero:</strong> Aprende a viajar de
+              forma más inteligente y económica.
+            </li>
+            <li>
+              <strong>Historias que Inspiran:</strong> Sumérgete en relatos
+              personales que te transportarán a otros lugares.
+            </li>
+          </ul>
+        </section>
+
+        <section id="destinos">
+          <h2>Destinos</h2>
+          <p>
+            Aquí te llevaré a recorrer los lugares más increíbles que he tenido
+            la suerte de visitar. Desde las vibrantes calles de metrópolis como
+            Tokio, hasta la serena belleza de los fiordos noruegos. Cada destino
+            es una puerta a una nueva cultura, nuevos sabores y nuevas formas de
+            ver la vida.
+          </p>
+        </section>
+
+        <section id="guias">
+          <h2>Guías de Viaje</h2>
+          <p>
+            Planificar un viaje puede ser abrumador, ¡pero estoy aquí para
+            ayudarte! En esta sección encontrarás itinerarios detallados,
+            presupuestos realistas, consejos de transporte y recomendaciones de
+            alojamiento para que puedas organizar tu próxima aventura sin
+            estrés.
+          </p>
+        </section>
+
+        <section id="galeria">
+          <h2>Mi Galería</h2>
+          <div class="galeria-contenedor">
+            <div class="galeria-item">
+              <img
+                src="https://i.postimg.cc/hfgtcc1r/20250606-1812-Gato-Curioso-simple-compose-01jx3vp1rjf539gjznj2zt50ee.png"
+                alt="Un gato curioso con gafas leyendo un libro."
+              />
+            </div>
+            <div class="galeria-item">
+              <img
+                src="https://i.postimg.cc/Tp9YPFkX/20250606-1814-Gato-Astronauta-Espacial-simple-compose-01jx3vrtm1fm6bddhd84vwek25.png"
+                alt="Un adorable gato astronauta flotando en el espacio."
+              />
+            </div>
+            <div class="galeria-item">
+              <img
+                src="https://i.postimg.cc/jn6qPFtP/20250606-1838-Zorro-Literario-en-Bosque-simple-compose-01jx3x59wffk7sww3q5hagj6cj.png"
+                alt="Un zorro inteligente en el bosque leyendo un libro."
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="inspiracion">
+          <h2>Inspiración para tu Viaje</h2>
+          <div id="quote-container">
+            <blockquote id="quote-text">Cargando cita...</blockquote>
+            <p id="quote-author"></p>
+            <button id="new-quote-button">Generar Nueva Cita</button>
+          </div>
+        </section>
+
+        <section id="sobre-mi">
+          <h2>Sobre Mí</h2>
+          <p>
+            Hola, soy la persona detrás de Crónicas de un Viajero. Lo que
+            comenzó como un diario personal se transformó en este espacio que
+            hoy comparto contigo. Siempre he creído que viajar es la mejor forma
+            de educación: te abre la mente, desafía tus prejuicios y te conecta
+            con la humanidad de una forma que ningún libro puede lograr.
+          </p>
+          <p>
+            Mi misión aquí es simple: inspirarte y equiparte para que te lances
+            a tu propia aventura. No se trata de coleccionar sellos en un
+            pasaporte, sino de coleccionar momentos que te cambien la vida.
+          </p>
+          <button onclick="cambiarColorTitulo()">¡Destacar Título!</button>
+        </section>
+
+        <section id="contacto">
+          <h2>Contacto</h2>
+          <p>
+            ¿Tienes alguna pregunta, una sugerencia o simplemente quieres
+            saludar? Me encantaría saber de ti. Este espacio también es una
+            comunidad, y tu opinión es muy importante. Rellena el formulario de
+            contacto o búscame en redes sociales. ¡Hablemos de viajes!
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <p>© 2025 Crónicas de un Viajero</p>
+      </footer>
+    </div>
+
+    <script>
+      // --- SCRIPT 1: Función para cambiar el color del título ---
+      function cambiarColorTitulo() {
+        var titulo = document.querySelector("#sobre-mi h2");
+        titulo.style.color = "orangeRed";
+      }
+
+      // --- SCRIPT 2: Lógica del Generador de Citas ---
+      const quotes = [
+        {
+          text: "La única forma de hacer un gran trabajo es amar lo que haces.",
+          author: "Steve Jobs",
+        },
+        {
+          text: "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+          author: "Robert Collier",
+        },
+        {
+          text: "El futuro pertenece a quienes creen en la belleza de sus sueños.",
+          author: "Eleanor Roosevelt",
+        },
+        {
+          text: "No esperes. El momento nunca será el adecuado.",
+          author: "Napoleon Hill",
+        },
+        {
+          text: "Cree que puedes y ya estás a medio camino.",
+          author: "Theodore Roosevelt",
+        },
+        {
+          text: "El único lugar donde el éxito viene antes que el trabajo es en el diccionario.",
+          author: "Vidal Sassoon",
+        },
+        {
+          text: "La vida es un 10% lo que nos ocurre y un 90% cómo reaccionamos a ello.",
+          author: "Charles R. Swindoll",
+        },
+        {
+          text: "Viajar es lo único que compras que te hace más rico.",
+          author: "Anónimo",
+        },
+        {
+          text: "Un viaje de mil millas comienza con un solo paso.",
+          author: "Lao Tsé",
+        },
+      ];
+
+      // Elementos del DOM para el generador de citas
+      const quoteTextElement = document.getElementById("quote-text");
+      const quoteAuthorElement = document.getElementById("quote-author");
+      const newQuoteButton = document.getElementById("new-quote-button");
+
+      let currentQuote = {};
+
+      // Función para obtener una nueva cita (evitando repetición)
+      function getNewQuote() {
+        let newQuote;
+        do {
+          const randomIndex = Math.floor(Math.random() * quotes.length);
+          newQuote = quotes[randomIndex];
+        } while (newQuote === currentQuote);
+        currentQuote = newQuote;
+        return newQuote;
+      }
+
+      // Función para mostrar la cita con animación
+      function displayQuote() {
+        const quote = getNewQuote();
+
+        quoteTextElement.classList.add("fade-out");
+        quoteAuthorElement.classList.add("fade-out");
+
+        setTimeout(() => {
+          quoteTextElement.textContent = quote.text;
+          quoteAuthorElement.textContent = quote.author;
+          quoteTextElement.classList.remove("fade-out");
+          quoteAuthorElement.classList.remove("fade-out");
+        }, 400); // Coincide con la transición en el CSS
+      }
+
+      // Event Listener para el botón de citas
+      newQuoteButton.addEventListener("click", displayQuote);
+
+      // Carga una cita inicial al abrir la página
+      document.addEventListener("DOMContentLoaded", (event) => {
+        displayQuote();
+      });
+    </script>
+  </body>
+</html>
